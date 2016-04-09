@@ -1,0 +1,11 @@
+% 20160408
+- Attempt to automate install & config of an L4 site:
+    /Users/devman/Dev/templates: folder for template code
+    /Users/devman/Dev/templates/l4: folder for L4 template code
+    /Users/devman/Dev/templates/l4/build: output of the L4 site
+    /Users/devman/Dev/templates/l4/bin: scripts
+
+- How/Where to put laravel packages (both in filesystem & github)
+    http://jasonlewis.me/article/laravel-4-develop-packages-using-the-workbench
+    https://github.com/composer/satis
+    https://laravel.com/docs/4.2/packages
