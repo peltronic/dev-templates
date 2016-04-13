@@ -1,0 +1,20 @@
+
+[ ] Do L5 not L4
+
+[ ] use gulp for this eventually??
+
+[ ] insert facebook package via script in composer.json, run update
+[ ] copy basic models
+[ ] DB schema
+[ ] setup basic modules for site, admin, api
+[ ] setup basic test cases for all modules (controllers, views)
+[ ] setup basic routing file
+[ ] setup/modify excetions.php, constants.php, etc
+[ ] setup/modify database.php (local & global)
+[ ] install bootstrap
+[ ] configure bootstrap
+OR...
+https://laravel.com/docs/5.1/elixir#installation
+http://stackoverflow.com/questions/30964780/foundation-with-laravel-and-elixir
+[ ] install foundation
+[ ] configure foundation
