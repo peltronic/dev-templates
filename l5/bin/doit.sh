@@ -4,7 +4,9 @@
 # holds the name of the program being run.  You can get this
 # value from the first item on the command line ($0).
 
+: "${BUILDDIR:?Env variable BUILDDIR must be set}"
 PROGNAME=$(basename $0)
+
 
 #-------------------------------------------------------------
 # Function for exit due to fatal program error
@@ -16,41 +18,71 @@ function error_exit
     exit 1
 }
 
-#php -n  ~/bin/composer.phar create-project laravel/laravel myl5app 4.2 --prefer-dist
+#=======================
+# INSTALL LARAVEL
+#=======================
+CWD=$(pwd)
+cd $BUILDDIR
+echo "=> INSTALLING L5 in $(pwd)..."
 php -n ~/bin/composer.phar create-project --prefer-dist laravel/laravel myl5app
 if [ "$?" != "0" ]; then
     error_exit "$LINENO: Laravel install failed"
 fi
+cd $CWD
 
+#=======================
+# Create symlink
+#=======================
+CWD=$(pwd)
+cd $BUILDDIR
+cd ..
+ln -s current www
+cd $CWD
+exit 0
+
+#=======================
+# Set folder permissions
+#=======================
+chmod -R 777 ./storage
+chmod -R 777 bootstrap/cache
+
+#=======================
+# Install packages
+#=======================
+CWD=$(pwd)
+cd $BUILDDIR/myl5app
+php -n ~/bin/composer.phar require laravelcollective/html
+php -n ~/bin/composer.phar require zizaco/entrust
+php -n ~/bin/composer.phar require facebook/php-sdk-v4
+php -n ~/bin/composer.phar update
+cd $CWD
+exit 0
+
+# [ ] do an initial git push before running gulpfile
+
+# ------------------------------------
+# ------------------------------------
+# ------------------------------------
+
+# [ ] source .env
+# [ ] update configs
+# [ ] fix .htaccess
+# [ ] UPDATE config/app.php providers & alises (!)
+# see ~/Dev/consulting/uwc/l5/petergwebdev
+
+#=======================
+# Create symlink
+#=======================
 cd myl5app
-if [ "$?" != "0" ]; then
-    error_exit "$LINENO: Could not cd to L4 app"
-fi
-
 # [ ] update .env, .htaccess, etc
 \cp -f $ROOTDIR/src/{.env,.htaccess} ./
 if [ "$?" != "0" ]; then
     error_exit "$LINENO: Could not install .env"
 fi
 
-#chmod -R 777 bootstrap/cache
-# [ ] update configs
-# [ ] fix .htaccess
-# [ ] chmod -R 777 ./storage
-# [ ] UPDATE config/app.php providers & alises (!)
-# see ~/Dev/consulting/uwc/l5/petergwebdev
-chmod -R 777 ./storage
-if [ "$?" != "0" ]; then
-    error_exit "$LINENO: Could not chmod 777 storage"
-fi
-# [ ] source .env
 
 exit 0  # DEBUG
 
-# php -n ~/bin/composer.phar require zizaco/entrust
-# php -n ~/bin/composer.phar require facebook/php-sdk-v4
-# php -n ~/bin/composer.phar require laravelcollective/html
-# php -n ~/bin/composer.phar update
 
 # https://laravel.com/docs/5.1/elixir#installation
 # http://stackoverflow.com/questions/30964780/foundation-with-laravel-and-elixir 

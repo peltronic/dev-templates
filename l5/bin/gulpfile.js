@@ -34,9 +34,16 @@ var srcpaths = {
     //extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
 };
 
+gulp.task('init', function() {
+    if (gutil.env.BUILDDIR === undefined) {
+        throw new gutil.PluginError({ plugin: 'deploy', message: 'BUILDDIR env variable is undefined.' });
+    }
+     process.stdout.write('Initiaizing: BUILDIR='+gutil.env.BUILDDIR+'\n');
+});
+
 gulp.task('default', ['watch']);
 
-gulp.task('copysrc', function() {
+gulp.task('copysrc', ['init'], function() {
     gulp.src(srcbase.libs+'*.php')
    .pipe(gulp.dest(dstbase.libs));
 
@@ -61,11 +68,11 @@ gulp.task('copysrc', function() {
 
 
 
-gulp.task('watch', function() {
+gulp.task('watch', ['init'], function() {
     gulp.watch('l5/src/**/{*.css,*.js,*.php}', ['copysrc']);
 });
 
-gulp.task('install-foundation', function() {
+gulp.task('install-foundation', ['init'], function() {
     gulp.src(srcpaths.setup)
     .pipe(gulp.dest(dstbase.app));
 
