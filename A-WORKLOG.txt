@@ -9,3 +9,6 @@
     http://jasonlewis.me/article/laravel-4-develop-packages-using-the-workbench
     https://github.com/composer/satis
     https://laravel.com/docs/4.2/packages
+
+% 20160412
+- switch to L5 

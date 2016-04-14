@@ -47,6 +47,21 @@ fi
 
 exit 0  # DEBUG
 
+# php -n ~/bin/composer.phar require zizaco/entrust
+
+# https://laravel.com/docs/5.1/elixir#installation
+# http://stackoverflow.com/questions/30964780/foundation-with-laravel-and-elixir 
+# [ ] touch .bowerrc # add content (use cp)
+# [ ] touch bower.json # add content (use cp)
+# [ ] npm install --global bower
+# [ ] bower install # This will install Foundation into vendor/bower_components
+# [ ] touch resources/assets/sass/_settings.scss # add content (use cp)
+# [ ] edit resources/assets/sass/app.scss # add content (NOTE this is an edit, file exists)
+# [ ] edit gulpfile.js # add content
+# [ ] npm install # Install L5 elixir
+# [ ] gulp
+## To update to the latest Zurb Foundation version run:
+## [ ] bower update
 
 mysql -u root -pdenshi51 < sql/base.sql
 if [ "$?" != "0" ]; then
@@ -74,4 +89,20 @@ composer require laravelcollective/html
 #if [ "$?" != "0" ]; then
 #    error_exit "$LINENO: Formbuilder installed failed"
 #fi
+
+# ---
+# https://github.com/Zizaco/entrust
+# Then in your config/app.php add
+# Zizaco\Entrust\EntrustServiceProvider::class,
+# in the providers array and
+#'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+# to the aliases array.
+#
+# If you are going to use Middleware (requires Laravel 5.1 or later) you also need to add
+#   'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+#   'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+#   'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
+# to routeMiddleware array in app/Http/Kernel.php.
+# ... more... see link
+
 

@@ -5,6 +5,9 @@
 <meta name="description" content="description here">
 <meta name="keywords" content="keywords,here">
 
+<?php
+echo $g_cssMgr->renderInlines();
+?>
 {{--
 <link rel="stylesheet" href="/css/app.css" />
 <link media="all" type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">

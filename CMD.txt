@@ -1,1 +1,3 @@
 composer create-project laravel/laravel myl4app 4.2 --prefer-dist
+
+npm install gulp

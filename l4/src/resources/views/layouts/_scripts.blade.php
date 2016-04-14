@@ -1,4 +1,9 @@
+<?php
+echo $g_jsMgr->renderLibs();
+echo $g_jsMgr->renderInlines();
+?>
 {{--
+<script type="text/javascript" src="{{ URL::asset('js/jquery.js') }}"></script>
 <script src="/static/js/vendor/jquery.js"></script>
 <script src="/static/js/vendor/vendor/jquery.min.js"></script>
 <script src="/static/js/vendor/vendor/what-input.min.js"></script>
