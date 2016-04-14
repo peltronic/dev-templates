@@ -48,6 +48,9 @@ fi
 exit 0  # DEBUG
 
 # php -n ~/bin/composer.phar require zizaco/entrust
+# php -n ~/bin/composer.phar require facebook/php-sdk-v4
+# php -n ~/bin/composer.phar require laravelcollective/html
+# php -n ~/bin/composer.phar update
 
 # https://laravel.com/docs/5.1/elixir#installation
 # http://stackoverflow.com/questions/30964780/foundation-with-laravel-and-elixir 
@@ -78,7 +81,6 @@ cp -R $ROOTDIR/src/Http/Controllers/Site ./app/Http/Controllers/
 cp -R $ROOTDIR/src/resources/views/site  ./resources/views/
 cp -R $ROOTDIR/src/resources/views/layouts  ./resources/views/
 
-composer require laravelcollective/html
 
 #php -n init-app-composer.php
 #if [ "$?" != "0" ]; then

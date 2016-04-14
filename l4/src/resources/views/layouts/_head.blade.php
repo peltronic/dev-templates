@@ -2,7 +2,7 @@
 <meta name="author" content="name">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="description here">
+<meta name="description" content="@yield('description','default description')">
 <meta name="keywords" content="keywords,here">
 
 <?php

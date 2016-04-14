@@ -8,6 +8,8 @@ var srcbase = {
     http: 'l4/src/Http/',
     resources: 'l4/src/resources/',
     layouts: 'l4/src/resources/views/layouts/',
+    css: 'l4/src/css/',
+    js: 'l4/src/js/',
 };
 var dstbase = {
     build: 'l4/build/',
@@ -17,6 +19,8 @@ var dstbase = {
     models: 'l4/build/myl5app/app/models/',
     resources: 'l4/build/myl5app/resources/',
     layouts: 'l4/build/myl5app/resources/views/layouts/',
+    css: 'l4/build/myl5app/public/app/css/',
+    js: 'l4/build/myl5app/public/app/js/',
 };
 
 var srcpaths = {
@@ -50,12 +54,15 @@ gulp.task('copysrc', function() {
 
     gulp.src(srcbase.resources+'views/site/siteconfigs/*.php')
    .pipe(gulp.dest(dstbase.root+'resources/views/site/siteconfigs'));
+
+    gulp.src(srcbase.css+'/**/*.css',{base: "."})
+   .pipe(gulp.dest(dstbase.css));
 });
 
 
 
 gulp.task('watch', function() {
-    gulp.watch('l4/src/**/{*.js,*.php}', ['copysrc']);
+    gulp.watch('l4/src/**/{*.css,*.js,*.php}', ['copysrc']);
 });
 
 gulp.task('install-foundation', function() {

@@ -1,0 +1,6 @@
+
+[ ] Add constraints to Entrust tables (see migration)
+[ ] Add CreatePasswordResetsTable (see migrations)
+[ ] updating of providers and aliases (may have to do this manually for now)
+
+    http://packalyst.com/packages/package/quince/auto-provider

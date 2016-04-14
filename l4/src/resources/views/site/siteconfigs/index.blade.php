@@ -6,8 +6,11 @@
 @section('content')
 
 <section class="row crate-profile_show">
-    <article class="tag-body small-12 columns">
-        Hello 2223 with watch
+    <article class="tag-body small-12 medium-6 columns">
+        Hello 1
+    </article>
+    <article class="tag-body small-12 medium-6 columns">
+        Hello 2
     </article>
 </section>
 @stop
