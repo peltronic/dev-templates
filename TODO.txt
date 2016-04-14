@@ -4,3 +4,20 @@
 [ ] updating of providers and aliases (may have to do this manually for now)
 
     http://packalyst.com/packages/package/quince/auto-provider
+
+Common components for websites
+~ use libs > controllers
+~ fat model thin controller
+~ simple cms (lib)
+~ modern landing page w/ call-to-action
+~ FB login
+~ Login/Registration/password mgmt
+~ profile mgmt
+~ Formbuilder
+~ image upload/plupload
+~ adminpanel
+~ masthead
+~ footer
+~ responsive
+~ static pages (tos, contact, etc)
+

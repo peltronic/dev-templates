@@ -2,25 +2,25 @@ var gulp  = require('gulp'),
     gutil = require('gulp-util');
 
 var srcbase = {
-    meta: 'l4/src/meta/',
-    libs: 'l4/src/libs/',
-    models: 'l4/src/models/',
-    http: 'l4/src/Http/',
-    resources: 'l4/src/resources/',
-    layouts: 'l4/src/resources/views/layouts/',
-    css: 'l4/src/css/',
-    js: 'l4/src/js/',
+    meta: 'l5/src/meta/',
+    libs: 'l5/src/libs/',
+    models: 'l5/src/models/',
+    http: 'l5/src/Http/',
+    resources: 'l5/src/resources/',
+    layouts: 'l5/src/resources/views/layouts/',
+    css: 'l5/src/css/',
+    js: 'l5/src/js/',
 };
 var dstbase = {
-    build: 'l4/build/',
-    root: 'l4/build/myl5app/',
-    app: 'l4/build/myl5app/app/',
-    libs: 'l4/build/myl5app/app/Libs/',
-    models: 'l4/build/myl5app/app/models/',
-    resources: 'l4/build/myl5app/resources/',
-    layouts: 'l4/build/myl5app/resources/views/layouts/',
-    css: 'l4/build/myl5app/public/app/css/',
-    js: 'l4/build/myl5app/public/app/js/',
+    build: 'l5/build/',
+    root: 'l5/build/myl5app/',
+    app: 'l5/build/myl5app/app/',
+    libs: 'l5/build/myl5app/app/Libs/',
+    models: 'l5/build/myl5app/app/models/',
+    resources: 'l5/build/myl5app/resources/',
+    layouts: 'l5/build/myl5app/resources/views/layouts/',
+    css: 'l5/build/myl5app/public/app/css/',
+    js: 'l5/build/myl5app/public/app/js/',
 };
 
 var srcpaths = {
@@ -62,7 +62,7 @@ gulp.task('copysrc', function() {
 
 
 gulp.task('watch', function() {
-    gulp.watch('l4/src/**/{*.css,*.js,*.php}', ['copysrc']);
+    gulp.watch('l5/src/**/{*.css,*.js,*.php}', ['copysrc']);
 });
 
 gulp.task('install-foundation', function() {

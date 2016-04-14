@@ -16,13 +16,13 @@ function error_exit
     exit 1
 }
 
-#php -n  ~/bin/composer.phar create-project laravel/laravel myl4app 4.2 --prefer-dist
+#php -n  ~/bin/composer.phar create-project laravel/laravel myl5app 4.2 --prefer-dist
 php -n ~/bin/composer.phar create-project --prefer-dist laravel/laravel myl5app
 if [ "$?" != "0" ]; then
     error_exit "$LINENO: Laravel install failed"
 fi
 
-cd myl4app
+cd myl5app
 if [ "$?" != "0" ]; then
     error_exit "$LINENO: Could not cd to L4 app"
 fi
