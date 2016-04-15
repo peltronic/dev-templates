@@ -39,8 +39,8 @@ class Controller extends BaseController
             '/css/vendor/app.css',
             '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
             //'/css/vendor/webicons.css',
-            '/app/css/l4/src/css/common/base.css',
-            '/app/css/l4/src/css/site/base.css',
+            '/css/app/common/base.css',
+            '/css/app/site/base.css',
          ]);
 
         \View::share('g_user', \App\Models\User::getUser());

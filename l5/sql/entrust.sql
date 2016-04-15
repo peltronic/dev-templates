@@ -1,3 +1,4 @@
+USE myl5app;
 
 CREATE TABLE `roles` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -50,7 +51,7 @@ CREATE TABLE `permission_role` (
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`)
 VALUES
-    (1, 'admin', 'Admin', '2016-01-01 01:01:01', '2016-01-01 01:01:01');
+    (1, 'admin', 'Admin', '2016-01-01 01:01:01', '2016-01-01 01:01:01'),
     (2, 'user', 'User', '2016-01-01 01:01:01', '2016-01-01 01:01:01');
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `created_at`, `updated_at`)
@@ -64,9 +65,7 @@ VALUES
     (2, 1, 2),
     (3, 2, 2);
 
-INSERT INTO `assigned_roles` (`id`, `user_id`, `role_id`)
+INSERT INTO `role_user` (`id`, `user_id`, `role_id`)
 VALUES
     (1, 1, 1),
-    (1, 1, 2);
-
-
+    (2, 1, 2);

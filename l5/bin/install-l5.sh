@@ -95,11 +95,6 @@ exit 0  # DEBUG
 #   'Html'      => Collective\Html\HtmlFacade::class,
 #   'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
-mysql -u root -pdenshi51 < sql/base.sql
-if [ "$?" != "0" ]; then
-    error_exit "$LINENO: SQL database creation failed"
-fi
-
 #php -n init-app-composer.php
 #if [ "$?" != "0" ]; then
 #    error_exit "$LINENO: Composer modification failed"

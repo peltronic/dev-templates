@@ -16,8 +16,8 @@ var srcbase = {
         },
     },
     meta: '../src/meta/',
-    css: '../src/css/',
-    js: '../src/js/',
+    appcss: '../src/css/',
+    appjs: '../src/js/',
 };
 var dstbase = {
     http: dstapp+'Http/',
@@ -30,14 +30,13 @@ var dstbase = {
         },
         assets: dstroot+'resources/assets/',
     },
-    css: 'l5/build/myl5app/public/app/css/',
-    js: 'l5/build/myl5app/public/app/js/',
+    appcss: dstroot+'/public/css/app/',
+    appjs: dstroot+'/public/js/app/',
 };
 var srcpaths = {
     setup: [srcbase.meta+'setup/.bowerrc', srcbase.meta+'setup/*'],
     //scripts: ['scripts/**/*.js', '!scripts/libs/**/*.js'],
     //libs: ['scripts/libs/jquery/dist/jquery.js', 'scripts/libs/underscore/underscore.js', 'scripts/backbone/backbone.js'],
-    //styles: ['styles/**/*.css'],
     //html: ['index.html', '404.html'],
     //images: ['images/**/*.png'],
     //extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
@@ -73,13 +72,14 @@ gulp.task('copyhttp', ['init'], function() {
     gulp.src(srcbase.http+'Controllers/Controller.php').pipe(gulp.dest(dstbase.http+'Controllers/')); // base controller
     gulp.src(srcbase.http+'Controllers/Site/*.php').pipe(gulp.dest(dstbase.http+'Controllers/Site/'));
 });
-gulp.task('copyhttp', ['init'], function() {
-    gulp.src(srcbase.resources+'views/site/siteconfigs/*.php').pipe(gulp.dest(dstbase.root+'resources/views/site/siteconfigs'));
+gulp.task('copycss', ['init'], function() {
+    gulp.src(srcbase.appcss+'/**/*.css',{base: srcbase.appcss}).pipe(gulp.dest(dstbase.appcss));
+});
+gulp.task('copyjs', ['init'], function() {
+    gulp.src(srcbase.appjs+'/**/*.js',{base: srcbase.appjs}).pipe(gulp.dest(dstbase.appjs));
 });
 // group task to install all source
-gulp.task('copysrc', ['copyhttp','copylibs','copymodels','copyresources'], function() {
-    gulp.src(srcbase.css+'/**/*.css',{base: "."})
-   .pipe(gulp.dest(dstbase.css));
+gulp.task('copysrc', ['copyhttp','copylibs','copymodels','copyresources','copycss','copyjs'], function() {
 });
 
 
@@ -102,7 +102,7 @@ gulp.task('default', ['watch']);
 //=================================================
 // %FIXME
 gulp.task('watch', ['init'], function() {
-    gulp.watch('l5/src/**/{*.css,*.js,*.php}', ['copyhttp']);
+    gulp.watch(srcbase.http+'/**/{*.php}', ['copyhttp']);
 });
 
 

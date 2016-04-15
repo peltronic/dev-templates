@@ -3,6 +3,7 @@ source setenv.sh
 pushd bin
 
 sh ./install-l5.sh
+sh ./install-sql.sh
 
 # [ ] do an initial git push before running gulpfile
 
@@ -40,3 +41,4 @@ popd
 #   'Html'      => Collective\Html\HtmlFacade::class,
 #   'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
+# Manually set config/*.php files

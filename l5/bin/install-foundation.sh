@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# I put a variable in my scripts named PROGNAME which
-# holds the name of the program being run.  You can get this
-# value from the first item on the command line ($0).
-
 : "${BUILDDIR:?Env variable BUILDDIR must be set}"
 PROGNAME=$(basename $0)
 
