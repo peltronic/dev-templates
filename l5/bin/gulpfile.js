@@ -1,30 +1,39 @@
 var gulp  = require('gulp'),
     gutil = require('gulp-util');
 
+var dstroot = gutil.env.BUILDDIR+'/myl5app/';
+var dstapp = gutil.env.BUILDDIR+'/myl5app/app/';
+
 var srcbase = {
-    meta: 'l5/src/meta/',
-    libs: 'l5/src/libs/',
-    models: 'l5/src/models/',
-    http: 'l5/src/Http/',
-    resources: 'l5/src/resources/',
-    layouts: 'l5/src/resources/views/layouts/',
-    css: 'l5/src/css/',
-    js: 'l5/src/js/',
+    http: '../src/Http/',
+    libs: '../src/libs/',
+    models: '../src/models/',
+    resources: {
+        tmp: '../src/resources/views/site',
+        views: {
+            layouts: '../src/resources/views/layouts',
+            site: '../src/resources/views/site',
+        },
+    },
+    meta: '../src/meta/',
+    css: '../src/css/',
+    js: '../src/js/',
 };
 var dstbase = {
-    build: 'l5/build/',
-    root: 'l5/build/myl5app/',
-    app: 'l5/build/myl5app/app/',
-    libs: 'l5/build/myl5app/app/Libs/',
-    models: 'l5/build/myl5app/app/models/',
-    resources: 'l5/build/myl5app/resources/',
-    layouts: 'l5/build/myl5app/resources/views/layouts/',
+    http: dstapp+'Http/',
+    libs: dstapp+'Libs/',
+    models: dstapp+'Models/',
+    resources: {
+        views: {
+            layouts: dstroot+'resources/views/layouts',
+            site: dstroot+'resources/views/site',
+        },
+    },
     css: 'l5/build/myl5app/public/app/css/',
     js: 'l5/build/myl5app/public/app/js/',
 };
-
 var srcpaths = {
-    setup: [srcbase.meta + 'setup/.bowerrc', srcbase.meta + 'setup/*'],
+    setup: [srcbase.meta+'setup/.bowerrc', srcbase.meta+'setup/*'],
     foundation: [srcbase.meta + 'install-foundation/*'],
     //scripts: ['scripts/**/*.js', '!scripts/libs/**/*.js'],
     //libs: ['scripts/libs/jquery/dist/jquery.js', 'scripts/libs/underscore/underscore.js', 'scripts/backbone/backbone.js'],
@@ -33,6 +42,33 @@ var srcpaths = {
     //images: ['images/**/*.png'],
     //extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
 };
+
+gulp.task('setup', ['init'], function() {
+    gulp.src(srcpaths.setup).pipe(gulp.dest(dstbase.app));
+});
+
+
+gulp.task('copyresources', ['init'], function() {
+    gulp.src(srcbase.resources.views.layouts+'/**/*.php',{base: srcbase.resources.views.layouts}).pipe(gulp.dest(dstbase.resources.views.layouts));
+    gulp.src(srcbase.resources.views.site+'/**/*.php',{base: srcbase.resources.views.site}).pipe(gulp.dest(dstbase.resources.views.site));
+});
+
+gulp.task('copylibs', ['init'], function() {
+    gulp.src(srcbase.libs+'*.php').pipe(gulp.dest(dstbase.libs));
+});
+gulp.task('copymodels', ['init'], function() {
+    gulp.src(srcbase.models+'*.php').pipe(gulp.dest(dstbase.models));
+});
+gulp.task('copyhttp', ['init'], function() {
+    gulp.src(srcbase.http+'routes.php').pipe(gulp.dest(dstbase.http)); // routes
+    gulp.src(srcbase.http+'Controllers/Controller.php').pipe(gulp.dest(dstbase.http+'Controllers/')); // base controller
+    gulp.src(srcbase.http+'Controllers/Site/*.php').pipe(gulp.dest(dstbase.http+'Controllers/Site/'));
+});
+
+gulp.task('copyhttp', ['init'], function() {
+    gulp.src(srcbase.resources+'views/site/siteconfigs/*.php').pipe(gulp.dest(dstbase.root+'resources/views/site/siteconfigs'));
+});
+
 
 gulp.task('init', function() {
     if (gutil.env.BUILDDIR === undefined) {
@@ -59,8 +95,6 @@ gulp.task('copysrc', ['init'], function() {
     gulp.src(srcbase.layouts+'*.php')
    .pipe(gulp.dest(dstbase.layouts));
 
-    gulp.src(srcbase.resources+'views/site/siteconfigs/*.php')
-   .pipe(gulp.dest(dstbase.root+'resources/views/site/siteconfigs'));
 
     gulp.src(srcbase.css+'/**/*.css',{base: "."})
    .pipe(gulp.dest(dstbase.css));
@@ -73,9 +107,8 @@ gulp.task('watch', ['init'], function() {
 });
 
 gulp.task('install-foundation', ['init'], function() {
-    gulp.src(srcpaths.setup)
-    .pipe(gulp.dest(dstbase.app));
-
-    gulp.src(srcpaths.foundation)
-    .pipe(gulp.dest(dstbase.app + 'resources/assets/sass/'));
+    gulp.src(srcpaths.setup).pipe(gulp.dest(dstbase.app));
+    gulp.src(srcpaths.foundation).pipe(gulp.dest(dstbase.app + 'resources/assets/sass/'));
 });
+
+

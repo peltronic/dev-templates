@@ -83,6 +83,13 @@ fi
 
 exit 0  # DEBUG
 
+# ***Add to config/app.php providiers:
+#  Collective\Html\HtmlServiceProvider::class,
+#  Zizaco\Entrust\EntrustServiceProvider::class,
+# ***Add to config/app.php aliases:
+#   'Form'      => Collective\Html\FormFacade::class,
+#   'Html'      => Collective\Html\HtmlFacade::class,
+#   'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
 # https://laravel.com/docs/5.1/elixir#installation
 # http://stackoverflow.com/questions/30964780/foundation-with-laravel-and-elixir 
