@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Libs\Crudtable;
 
 class SiteconfigsController extends Controller {
 
@@ -15,36 +16,26 @@ class SiteconfigsController extends Controller {
          ]);
 
         // Common sidebar routes
-        $this->_routes['crud_index'] = ['route'=>'admin.configs.index','title'=>'Index'];
+        $this->_routes['crud_index'] = ['route'=>'admin.configs.index','title'=>'List'];
 	}
 
 	public function index()
 	{
-        $data = [];
-        /*
+        //$this->_routes['do_export'] = ['route'=>'admin.subscribers.doExport','title'=>'Export'];
+        //\Input::flash();
+
         \View::share('g_routes', $this->_routes);
 
-        $attrs = \Input::all();
-        \Input::flash();
+        $data = [];
 
-        $data['cnt'] = \DB::table('siteconfigs')->count();
+        $crudTable = new Crudtable('siteconfigs',['slug','value']);
+        $q = $crudTable->makeQuery();
+        $crudTable->applyFilters($q); // updates $q
 
-        $q = \Siteconfig::orderBy('created_at','desc');
-        $filters = ['slug'];
-        foreach ($filters as $f) {
-            if ( array_key_exists($f,$attrs) && !empty($attrs[$f]) ) {
-                switch ($f) {
-                    default:
-                        $q->where($f,'LIKE','%'.$attrs[$f].'%');
-                }
-            }
-        }
-
-        $data['configs'] = $configs = $q->paginate(100);
+        $data['crud_table'] = &$crudTable;
         $data['cnt'] = $q->count();
-         */
+        $data['records'] = $records = $q->paginate(25);
 
         return \View::make('admin.siteconfigs.index',$data);
 	}
-
 }

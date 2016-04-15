@@ -1,8 +1,9 @@
 <?php
+namespace App\Http\Controllers\Admin;
 
-namespace UtAdmin;
+use App\Http\Controllers\Controller;
 
-class HomeController extends BaseController {
+class HomeController extends Controller {
 
 	public function __construct()
 	{
@@ -15,6 +16,6 @@ class HomeController extends BaseController {
 	public function index()
 	{
         $data = [];
-		return \View::make('admin::home.index',$data);
+        return \View::make('admin.home.index',$data);
 	}
 }

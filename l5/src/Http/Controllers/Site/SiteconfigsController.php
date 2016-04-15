@@ -49,5 +49,4 @@ class SiteconfigsController extends Controller {
 
         return \View::make('site.siteconfigs.index',$data);
     }
-
 }

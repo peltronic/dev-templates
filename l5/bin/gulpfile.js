@@ -6,6 +6,7 @@ var dstroot = gutil.env.BUILDDIR+'/myl5app/';
 var dstapp = gutil.env.BUILDDIR+'/myl5app/app/';
 
 var srcbase = {
+    src: '../src/',
     http: '../src/Http/',
     libs: '../src/libs/',
     models: '../src/models/',
@@ -13,6 +14,7 @@ var srcbase = {
         views: {
             layouts: '../src/resources/views/layouts/',
             site: '../src/resources/views/site/',
+            admin: '../src/resources/views/admin/',
         },
     },
     meta: '../src/meta/',
@@ -27,6 +29,7 @@ var dstbase = {
         views: {
             layouts: dstroot+'resources/views/layouts/',
             site: dstroot+'resources/views/site/',
+            admin: dstroot+'resources/views/admin/',
         },
         assets: dstroot+'resources/assets/',
     },
@@ -60,6 +63,7 @@ gulp.task('install-foundation', ['init'], function() {
 gulp.task('copyresources', ['init'], function() {
     gulp.src(srcbase.resources.views.layouts+'/**/*.php',{base: srcbase.resources.views.layouts}).pipe(gulp.dest(dstbase.resources.views.layouts));
     gulp.src(srcbase.resources.views.site+'/**/*.php',{base: srcbase.resources.views.site}).pipe(gulp.dest(dstbase.resources.views.site));
+    gulp.src(srcbase.resources.views.admin+'/**/*.php',{base: srcbase.resources.views.admin}).pipe(gulp.dest(dstbase.resources.views.admin));
 });
 gulp.task('copylibs', ['init'], function() {
     gulp.src(srcbase.libs+'*.php').pipe(gulp.dest(dstbase.libs));
@@ -71,6 +75,7 @@ gulp.task('copyhttp', ['init'], function() {
     gulp.src(srcbase.http+'routes.php').pipe(gulp.dest(dstbase.http)); // routes
     gulp.src(srcbase.http+'Controllers/Controller.php').pipe(gulp.dest(dstbase.http+'Controllers/')); // base controller
     gulp.src(srcbase.http+'Controllers/Site/*.php').pipe(gulp.dest(dstbase.http+'Controllers/Site/'));
+    gulp.src(srcbase.http+'Controllers/Admin/*.php').pipe(gulp.dest(dstbase.http+'Controllers/Admin/'));
 });
 gulp.task('copycss', ['init'], function() {
     gulp.src(srcbase.appcss+'/**/*.css',{base: srcbase.appcss}).pipe(gulp.dest(dstbase.appcss));
@@ -94,16 +99,19 @@ gulp.task('init', function() {
      process.stdout.write('Initiaizing: BUILDIR='+gutil.env.BUILDDIR+'\n');
 });
 
-gulp.task('default', ['watch']);
-
 
 //=================================================
 // WATCH
 //=================================================
 // %FIXME
 gulp.task('watch', ['init'], function() {
-    gulp.watch(srcbase.http+'/**/{*.php}', ['copyhttp']);
+    //gulp.watch('../src/**/*.php', ['copyhttp']);
+    gulp.watch(srcbase.http+'**/*.php', ['copyhttp']);
+    gulp.watch(srcbase.libs+'**/*.php', ['copylibs']);
+    gulp.watch(srcbase.models+'**/*.php', ['copymodels']);
+    gulp.watch(srcbase.src+'resources/**/*.php', ['copyresources']);
+    gulp.watch(srcbase.appcss+'**/*.css', ['copycss']);
+    gulp.watch(srcbase.appjs+'**/*.js', ['copyjs']);
 });
 
-
-
+gulp.task('default', ['watch']);
