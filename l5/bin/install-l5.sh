@@ -55,10 +55,12 @@ php -n ~/bin/composer.phar require laravelcollective/html
 php -n ~/bin/composer.phar require zizaco/entrust
 php -n ~/bin/composer.phar require facebook/php-sdk-v4
 php -n ~/bin/composer.phar update
+
+npm install
+
 cd $CWD
 exit 0
 
-# [ ] do an initial git push before running gulpfile
 
 # ------------------------------------
 # ------------------------------------
@@ -71,7 +73,7 @@ exit 0
 # see ~/Dev/consulting/uwc/l5/petergwebdev
 
 #=======================
-# Create symlink
+# ...
 #=======================
 cd myl5app
 # [ ] update .env, .htaccess, etc
@@ -80,6 +82,8 @@ if [ "$?" != "0" ]; then
     error_exit "$LINENO: Could not install .env"
 fi
 
+# [ ] do an initial git push before running gulpfile
+# [ ] Run  gulp --BUILDDIR=$BUILDDIR copysrc
 
 exit 0  # DEBUG
 
@@ -91,35 +95,10 @@ exit 0  # DEBUG
 #   'Html'      => Collective\Html\HtmlFacade::class,
 #   'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
-# https://laravel.com/docs/5.1/elixir#installation
-# http://stackoverflow.com/questions/30964780/foundation-with-laravel-and-elixir 
-# [ ] touch .bowerrc # add content (use cp)
-# [ ] touch bower.json # add content (use cp)
-# [ ] npm install --global bower
-# [ ] bower install # This will install Foundation into vendor/bower_components
-# [ ] touch resources/assets/sass/_settings.scss # add content (use cp)
-# [ ] edit resources/assets/sass/app.scss # add content (NOTE this is an edit, file exists)
-# [ ] edit gulpfile.js # add content
-# [ ] npm install # Install L5 elixir
-# [ ] gulp
-## To update to the latest Zurb Foundation version run:
-## [ ] bower update
-
 mysql -u root -pdenshi51 < sql/base.sql
 if [ "$?" != "0" ]; then
     error_exit "$LINENO: SQL database creation failed"
 fi
-
-cp $ROOTDIR/src/models/*.php ./app/models
-if [ "$?" != "0" ]; then
-    error_exit "$LINENO: Model installation failed"
-fi
-
-cp $ROOTDIR/src/Http/routes.php ./app/Http/
-cp -R $ROOTDIR/src/Http/Controllers/Site ./app/Http/Controllers/
-cp -R $ROOTDIR/src/resources/views/site  ./resources/views/
-cp -R $ROOTDIR/src/resources/views/layouts  ./resources/views/
-
 
 #php -n init-app-composer.php
 #if [ "$?" != "0" ]; then

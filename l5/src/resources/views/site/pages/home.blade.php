@@ -36,7 +36,7 @@
         </p>
     </article>
     <article class="small-12 columns">
-        {!! $contents['home-page-1'] !!}
+        HERE
     </article>
 </section>
 

@@ -17,6 +17,12 @@ class PagesController extends Controller {
     }
 
 
+    public function home()
+    {
+        $data = [];
+        return \View::make('site.pages.home', $data);
+    }
+
     public function show($slug)
     {
         $data = [];
