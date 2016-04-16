@@ -42,11 +42,8 @@ class User extends Authenticatable {
         } else if ( \Auth::guest()) {
             $user = null;
         } else {
-            $user = new stdClass();
-            $user->id = \Auth::user()->id;
-            $user->firstname = \Auth::user()->firstname;
-            $user->lastname = \Auth::user()->lastname;
-            $user->email = \Auth::user()->email;
+            $user = \Auth::user();
+            unset($user->password);
         }
         return $user;
     }

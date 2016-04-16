@@ -29,9 +29,9 @@ CREATE TABLE `lsessions` (
 CREATE TABLE `siteconfigs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `slug` varchar(64) NOT NULL COMMENT 'acts as a key for lookup',
-  `value` text COMMENT 'value associated with the key/slug',
-  `comment` varchar(255) DEFAULT '' COMMENT 'optional description/usage',
-  `data` longtext,
+  `value` varchar(255) NULL DEFAULT NULL COMMENT 'value associated with the key/slug',
+  `comment` text COMMENT 'optional description/usage',
+  `data` longtext COMMENT 'optional data (eg, json)',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),

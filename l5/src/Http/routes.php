@@ -27,12 +27,20 @@ Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'], fun
 
 });
 
+// From demo (command php artisan make:auth)
+Route::auth();
+Route::get('/demo', 'DemoController@index');
+//Route::get('/home', 'HomeController@index');
+
 //-------------------------------------------------------------------------
 // Web
 //-------------------------------------------------------------------------
 Route::group(['middleware' => ['web']], function () {
     Route::get('/siteconfigs', ['as'=>'siteconfigs.show', 'uses'=>'Site\SiteconfigsController@show']);
     //Route::get('/test', ['as'=>'test', 'uses'=>'Site\TestController@show']);
+
+    // %FIXME: move pages to end
     Route::get('/{slug}', ['as'=>'site.pages.show', 'uses'=>'Site\PagesController@show']);
     Route::get('/', ['as'=>'site.pages.home', 'uses'=>'Site\PagesController@home']);
 });
+

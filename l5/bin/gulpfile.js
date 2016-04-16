@@ -73,7 +73,8 @@ gulp.task('copymodels', ['init'], function() {
 });
 gulp.task('copyhttp', ['init'], function() {
     gulp.src(srcbase.http+'routes.php').pipe(gulp.dest(dstbase.http)); // routes
-    gulp.src(srcbase.http+'Controllers/Controller.php').pipe(gulp.dest(dstbase.http+'Controllers/')); // base controller
+    gulp.src(srcbase.http+'Controllers/*.php').pipe(gulp.dest(dstbase.http+'Controllers/')); // base controller
+    gulp.src(srcbase.http+'Controllers/Auth/*.php').pipe(gulp.dest(dstbase.http+'Controllers/Auth/'));
     gulp.src(srcbase.http+'Controllers/Site/*.php').pipe(gulp.dest(dstbase.http+'Controllers/Site/'));
     gulp.src(srcbase.http+'Controllers/Admin/*.php').pipe(gulp.dest(dstbase.http+'Controllers/Admin/'));
 });
