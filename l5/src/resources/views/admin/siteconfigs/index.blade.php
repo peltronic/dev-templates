@@ -5,6 +5,12 @@
 
 <section class="row">
     <article class="small-11 medium-12 columns">
+@role('admin'))
+    <div>This is visible to users with the admin role. Gets translated to role('admin')</div>
+@endrole
+        @if (1)
+        TEST
+        @endif
         <h1>Siteconfigs</h1>
     </article>
 </section>

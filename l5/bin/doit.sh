@@ -43,3 +43,15 @@ popd
 #   'Input' => Illuminate\Support\Facades\Input::class,
 
 # Manually set config/*.php files
+
+# Manually update providers.user in config/app.php
+#   'providers' => [
+#       'users' => [
+#           'driver' => 'eloquent',
+##          'model' => App\User::class,
+#           'model' => App\Models\User::class,
+#       ],
+
+# Zizaco Entrust bug fix
+# manually update composer.json...
+#https://github.com/Zizaco/entrust/issues/468

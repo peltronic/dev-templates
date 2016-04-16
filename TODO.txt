@@ -1,9 +1,25 @@
+%%% M 4/18
+[ ] https://laravel.com/docs/5.2/authorization vs entrust
+
+%%%
+[ ] Build out the Austin site with this
 
 [ ] Add constraints to Entrust tables (see migration)
 [ ] Add CreatePasswordResetsTable (see migrations)
 [ ] updating of providers and aliases (may have to do this manually for now)
 
-    http://packalyst.com/packages/package/quince/auto-provider
+
+%% Cool Things in L5:
+[ ] https://laravel.com/docs/5.2/container
+[ ] https://laravel.com/docs/5.2/billing
+[ ] https://github.com/Zizaco/entrust
+[ ] https://laravel.com/docs/5.2/authorization
+[ ] https://laravel.com/docs/5.2/quickstart#routing
+[ ] https://laravel.com/docs/5.2/quickstart-intermediate#eloquent-relationships
+[ ] Repositories & policies
+[ ] View helpers
+
+[ ] http://packalyst.com/packages/package/quince/auto-provider
 
 Common components for websites
 ~ use libs > controllers
