@@ -11,7 +11,7 @@ Route::get('/', function () {
 // Admin
 //-------------------------------------------------------------------------
 // %FIXME: change middleware to 'auth'
-Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'], function()
+Route::group(['middleware'=>['web','role:admin'],'prefix'=>'admin','namespace'=>'Admin'], function()
 {
 //$ig = \Auth::user();
 //dd($ig);
@@ -22,6 +22,7 @@ Route::group(['middleware'=>['web'],'prefix'=>'admin','namespace'=>'Admin'], fun
     //Route::resource('users', 'UsersController');
 
     Route::resource('siteconfigs', 'SiteconfigsController');
+    Route::resource('users', 'UsersController');
 
     Route::get('/', ['as'=>'admin.home', 'uses'=>'HomeController@index']);
 
