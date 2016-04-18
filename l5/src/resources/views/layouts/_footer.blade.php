@@ -1,7 +1,6 @@
-<footer>
 
     <section class="row">
-        <article class="small-12 medium-12 columns border-share ftr-social">
+        <article class="col-xs-12 col-md-12 border-share ftr-social">
             <ul>
                 <li class="some-logo">
                     {{--<a href="#"><i class="fa fa-twitter fa-2x"></i></a>   --}}
@@ -11,15 +10,15 @@
     </section>
 
     <section class="row">
-        <article class="small-11 medium-9 small-centered">
+        <article class="col-xs-11 col-md-9 col-xs-centered">
 
             <section class="row">
-                <article class="superbox-copyright_etc small-12 medium-6 columns">
-                    <img id="footer-logo" src="/static/images/mycompany-logo-smallest.png" alt="mylogo">
+                <article class="superbox-copyright_etc col-xs-12 col-md-6">
+                    <img id="footer-logo" src="/static/images/mycompany-logo-col-xs.png" alt="mylogo">
                     <div id="copyright" class="">Copyright © 2016 My Company Inc.</div>
                 </article>
         
-                <article class="superbox-addr_etc small-12 medium-6 columns">
+                <article class="superbox-addr_etc col-xs-12 col-md-6">
                     <div class="" id="address-number">
                         <span class="tag-addr">555 Some Road, Suite 200, Lisle, WA 11111</span>
                         <span class="tag-pipe"> | </span>
@@ -35,4 +34,3 @@
         </article>
     </section>
 
-</footer>

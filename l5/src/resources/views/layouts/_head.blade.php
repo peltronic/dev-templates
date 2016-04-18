@@ -17,3 +17,9 @@ echo $g_cssMgr->renderInlines();
 <link rel="shortcut icon" href="favicon.ico">
 <link rel="shortcut icon" href="/static/images/utilitworx-favi.ico">
 --}}
+
+{{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+
+<style>
+    body { font-family: 'Lato'; }
+</style>

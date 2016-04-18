@@ -1,17 +1,26 @@
-<section class="crate-sidebar tag-filterform">
-    {{ Form::open(['route'=>$route,'method'=>'GET','class'=>'form-index_search','data-type'=>'text']) }}
+<div class="tag-listfilterform panel-body">
+    {{ Form::open(['route'=>$route,'method'=>'GET','class'=>'form-index_search form-horizontal','data-type'=>'text']) }}
         <fieldset>
             <legend>Search</legend>
 
             @foreach ($avail_filters as $f)
-            {{ Form::label($f,ucfirst($f)) }}
-            {{  Form::text($f,\Input::old($f),['class'=>'OFF']) }}
+                <div class="form-group{{ $errors->has($f) ? ' has-error' : '' }}">
+                    {{ Form::label($f,ucfirst($f), ['class'=>'col-md-4 control-label']) }}
+                    <div class="col-md-6">
+                        {{ Form::text($f,\Input::old($f),['class'=>'form-control']) }}
+                        @if ($errors->has($f))
+                            <span class="help-block"><strong>{{$errors->first($f)}}</strong></span>
+                        @endif
+                    </div>
+                </div>
             @endforeach
 
-            <div class="form-ctrl">
-                {{ Form::submit('Search', ['aria-label'=>'search', 'class'=>'button tiny radius'])}}
-                {{ link_to($clear_url,'Clear',['class'=>'button tiny radius secondary']) }}
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-4">
+                {{ Form::submit('Search', ['aria-label'=>'search', 'class'=>'btn btn-primary'])}}
+                {{ link_to($clear_url,'Clear',['class'=>'btn btn-default']) }}
             </div>
+            {!! csrf_field() !!}
         <fieldset>
     {{ Form::close() }}
-</section>
+</div>

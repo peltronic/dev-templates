@@ -92,7 +92,7 @@ class Crudtable {
 
     public function renderFilterForm()
     {
-        $html = \View::make('admin._listfilterform',[
+        $html = \View::make('admin._panelsidebar',[
             //'route'=>'admin.'.$this->_table.'.index',
             'route'=>$this->_route,
             'avail_filters'=>$this->_availFilters,

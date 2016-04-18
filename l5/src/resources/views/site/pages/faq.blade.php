@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
-<div class="container-faq">
+<div class="tag-faq">
 	<h1 class="page-title">Frequently Asked Questions</h1>
 <div class="col-100">
 				<link media="all" type="text/css" rel="stylesheet" href="https://www.writeevolution.com/style/static.css">

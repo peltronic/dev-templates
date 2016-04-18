@@ -20,28 +20,8 @@ class Controller extends BaseController
     
     public function __construct()
     {
-        // Check account status
-        //$this->beforeFilter('auth.suspended');
-
         $this->_cssMgr = new \App\Libs\CssManager();
         $this->_jsMgr = new JsManager();
-
-        // common to all site controllers
-        $this->registerJsLibs([
-            '/js/vendor/app.js',
-         ]);
-
-        $this->registerJsInlines([
-            //'/js/site/initCommon.js',
-         ]);
-
-        $this->registerCssInlines([
-            '/css/vendor/app.css',
-            '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',
-            //'/css/vendor/webicons.css',
-            '/css/app/common/base.css',
-            '/css/app/site/base.css',
-         ]);
 
         \View::share('g_user', \App\Models\User::getUser());
         \View::share('g_php2jsVars',$this->_php2jsVars); // may be overridden in child

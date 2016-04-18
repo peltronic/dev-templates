@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
-<div class="container-tos">
+<div class="tag-tos">
 	<h1 class="page-title">Terms of Service</h1>
 <div class="content-tos">    	
 	<h1>WriteEvolution™ Terms and Conditions</h1>

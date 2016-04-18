@@ -1,28 +1,35 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <title>@yield('title')</title>
     @include('layouts._head')
 </head>
-<body>
-    @include('layouts._nav')
 
-    {{--
-    @section('sidebar')
-        This is the master sidebar.
-    @show
-    --}}
+<body id="app-layout">
 
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
-        @yield('content')
+        @include('layouts._nav')
     </div>
-    @include('layouts._scripts')
+</nav>
+
+<div id="container-content" class="container">
+    @yield('content')
+</div>
+
+<footer class="container">
+    @include('layouts._footer')
+</footer>
+
+<?php
+echo $g_jsMgr->renderLibs();
+echo $g_jsMgr->renderInlines();
+?>
+
 <script>
-{{--
-$(document).ready(function(){
-    alert('Foundation Core Version: ' + Foundation.version);
-    alert('Foundation DropDown Version:' + Foundation.libs.dropdown.version);
-});
---}}
 </script>
+
 </body>
+
 </html>

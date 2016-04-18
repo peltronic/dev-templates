@@ -1,7 +1,7 @@
 @extends('layouts.site')
 
 @section('content')
-<div class="container-contact">
+<div class="tag-contact">
 	<h1 class="page-title">Contact Us</h1>
     <form method="POST" action="/contact-us_post" accept-charset="UTF-8" class="form" role="form"><input name="_token" type="hidden" value="FCcecwnfjjlyo50acnnS8jkixz0oV6qt2uVQtoNT">        <input name="redirect_to" type="hidden" value="/">    
     <div class="form-group">

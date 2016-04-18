@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers\Site;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\SiteController;
 
-class PagesController extends Controller {
+class PagesController extends SiteController {
 
     public function __construct()
     {

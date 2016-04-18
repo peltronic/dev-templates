@@ -6,10 +6,10 @@
 @section('content')
 
 <section class="row crate-profile_show">
-    <article class="tag-body small-12 medium-6 columns">
+    <article class="tag-body col-xs-12 col-md-6">
         Hello 1
     </article>
-    <article class="tag-body small-12 medium-6 columns">
+    <article class="tag-body col-xs-12 col-md-6">
         Hello 2
     </article>
 </section>

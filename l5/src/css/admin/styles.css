@@ -1,0 +1,16 @@
+/* ? */
+header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 2px #ccc;
+}
+footer {
+    border-top: solid 2px #ccc;
+}
+#container-content {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+ul.crate-nav_admin_tabs li {
+    display: inline-block;
+}

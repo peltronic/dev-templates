@@ -27,7 +27,8 @@ class CssManager {
 		foreach ($this->_inlinePaths as $file) {
 			$isLocal = (strstr($file,'//') ? 0 : 1);
             if ($isLocal and !file_exists(public_path().$file)) {
-                continue; // local and not updated (? PSG)
+                //continue; // local and not updated (? PSG)
+                throw new \Exception('could not find css inline: '.$file);
             }
 			$time = ($isLocal ? filemtime(public_path().$file) : NULL);
 			$html .= '<link media="all" type="text/css" rel="stylesheet" href="'.$file.($time ? "?".$time : "").'">'."\n";

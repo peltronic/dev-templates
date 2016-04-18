@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Libs\Crudtable;
 
-class UsersController extends Controller {
+class UsersController extends AdminController {
 
 	public function __construct()
 	{

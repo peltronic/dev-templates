@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\AdminController;
 use App\Libs\Crudtable;
 
-class SiteconfigsController extends Controller {
+class SiteconfigsController extends AdminController {
 
     protected $_routes; // %FIXME: move to a composed object
 
