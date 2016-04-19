@@ -1,10 +1,15 @@
 <?php
 
 
+//-------------------------------------------------------------------------
+// Default
+//-------------------------------------------------------------------------
 Route::get('/', function () {
     return view('welcome');
 });
-
+// From demo (command php artisan make:auth)
+Route::auth();
+Route::get('/demo', 'DemoController@index');
 
 
 //-------------------------------------------------------------------------
@@ -28,20 +33,24 @@ Route::group(['middleware'=>['web','role:admin'],'prefix'=>'admin','namespace'=>
 
 });
 
-// From demo (command php artisan make:auth)
-Route::auth();
-Route::get('/demo', 'DemoController@index');
-//Route::get('/home', 'HomeController@index');
+//-------------------------------------------------------------------------
+// Auth
+//-------------------------------------------------------------------------
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/siteconfigs', ['as'=>'siteconfigs.show', 'uses'=>'Site\SiteconfigsController@show']);
+});
 
 //-------------------------------------------------------------------------
 // Web
 //-------------------------------------------------------------------------
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/siteconfigs', ['as'=>'siteconfigs.show', 'uses'=>'Site\SiteconfigsController@show']);
-    //Route::get('/test', ['as'=>'test', 'uses'=>'Site\TestController@show']);
+    Route::get('/login/fb', ['as'=>'auth.doFacebookLogin', 'uses'=>'AuthController@doFacebookLogin']);
+    Route::get('/login/fb/callback', ['as'=>'auth.callbackFacebookLogin', 'uses'=>'AuthController@callbackFacebookLogin']);
 
     // %FIXME: move pages to end
+    Route::get('/welcome', ['as'=>'site.welcome', 'uses'=>'Site\WelcomeController@show']);
     Route::get('/{slug}', ['as'=>'site.pages.show', 'uses'=>'Site\PagesController@show']);
     Route::get('/', ['as'=>'site.pages.home', 'uses'=>'Site\PagesController@home']);
 });
+
 

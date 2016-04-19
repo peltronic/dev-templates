@@ -1,5 +1,5 @@
 <?php
-namespace PsgApp;
+namespace App\Libs;
 
 class ViewHelpers {
 
@@ -9,62 +9,59 @@ class ViewHelpers {
         return $dateOut;
     }
 
-    public static function renderLikeIcon($user,$message)
+    public static function linkToRouteWithHtml($route,$html,$params=[],$attrs=[])
     {
-	    $isLikedByMe = \Cl\MessageManager::haveILiked($user,$message);
-	    $shadeClass = \Cl\MessageManager::getShadeClass($message);
-
-        $route = $isLikedByMe ? 'site.messagelikes.remove' : 'site.messagelikes.add';
-        $title = $isLikedByMe ? 'Unlike' : 'Like';
-        $params = $isLikedByMe ?  [$message->id] : null;
-        $content =  '<div title="'.$title.'" message_id="'.$message->id.'" class="fa fa-heart tag-label '.$shadeClass.'"></div>';
-        $content .= '<div data_post-id="'.$message->id.'" class="tag-number" title="'.$message->getLikeCount().' Like(s)">'.$message->getLikeCount().'</div>';
-
-        $html = '<span class="tag-like_icon tag-icon">';
-        $classes[] = $isLikedByMe ? 'tag-clickme_to_remove_like' : 'tag-clickme_to_add_like';
-        $html .= html_entity_decode( 
-                                    link_to_route( $route, $content, $params, ['data-message_id'=>$message->id,'class'=>implode(' ',$classes)] ) 
-                                );
-        $html .= '</span>';
+        $html = html_entity_decode( 
+                                    link_to_route( 
+                                        $route,
+                                        $html,
+                                        $params,
+                                        $attrs
+                                    ) 
+                                  );
         return $html;
-    } // renderLikeIcon()
+    }
 
-    // for Messages
-    public static function renderDeleteIcon($user,$message)
+    public static function linkToWithHtml($url,$html,$attrs=[])
     {
-        $content =  '<span title="Remove Post" message_id="'.$message->id.'" class="fa fa-remove tag-label"></span>';
-
-        $html = '<span class="tag-remove_icon tag-icon">';
-        $classes = [];
-        $params = $message->id;
-        $attrs = [
-                    'class'=>implode(' ',$classes),
-                    'data-message_id'=>$message->id,
-                    'data-method'=>'DELETE',
-                    'data-confirm'=>'Are you sure you want to delete this post?',
-                 ];
-        $html .= html_entity_decode( link_to_route('site.messages.destroy',$content,$params,$attrs) );
-        $html .= '</span>';
+        $html = html_entity_decode( 
+                                    link_to( 
+                                        $url,
+                                        $html,
+                                        $attrs
+                                    ) 
+                                  );
         return $html;
-    } // renderDeleteIcon()
+    }
 
-    // for Messages
-    public static function renderNotificationDeleteIcon($user,$notification)
+    public static function linkToRouteWithImg($route,$imgPath,$imgAlt,$imgAttrs=[],$linkClasses=[])
     {
-        $content =  '<span title="Remove Notification" notification_id="'.$notification->id.'" class="fa fa-remove tag-label"></span>';
-
-        $html = '<span class="tag-remove_icon tag-icon">';
-        $classes = [];
-        $params = $notification->id;
-        $attrs = [
-                    'class'=>implode(' ',$classes),
-                    'data-notification_id'=>$notification->id,
-                    'data-method'=>'DELETE',
-                    'data-confirm'=>'Are you sure you want to delete this notification?',
-                 ];
-        $html .= html_entity_decode( link_to_route('site.notifications.destroy',$content,$params,$attrs) );
-        $html .= '</span>';
+        $html = html_entity_decode( 
+                                    link_to_route( 
+                                        $route,
+                                        \HTML::image(
+                                            $imgPath,
+                                            $imgAlt,
+                                            $imgAttrs //array('class'=>'tag-usericon'), array( 'width' => 70, 'height' => 70 )
+                                        ) 
+                                    ) 
+                                  );
         return $html;
-    } // renderNotificationDeleteIcon()
+    }
 
+    public static function linkToWithImg($url,$imgPath,$imgAlt,$imgClasses=[],$linkClasses=[])
+    {
+        $html = html_entity_decode( 
+                                    link_to( 
+                                        $url,
+                                        \HTML::image(
+                                            $imgPath,
+                                            $imgAlt,
+                                            $imgClasses //array('class'=>'tag-usericon')
+                                        ), 
+                                        $linkClasses
+                                    ) 
+                                  );
+        return $html;
+    }
 }
