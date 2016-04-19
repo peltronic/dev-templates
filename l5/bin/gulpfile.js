@@ -15,6 +15,7 @@ var srcbase = {
             layouts: '../src/resources/views/layouts/',
             site: '../src/resources/views/site/',
             admin: '../src/resources/views/admin/',
+            auth: '../src/resources/views/auth/',
         },
     },
     meta: '../src/meta/',
@@ -30,6 +31,7 @@ var dstbase = {
             layouts: dstroot+'resources/views/layouts/',
             site: dstroot+'resources/views/site/',
             admin: dstroot+'resources/views/admin/',
+            auth: dstroot+'resources/views/auth/',
         },
         assets: dstroot+'resources/assets/',
     },
@@ -64,6 +66,7 @@ gulp.task('copyresources', ['init'], function() {
     gulp.src(srcbase.resources.views.layouts+'/**/*.php',{base: srcbase.resources.views.layouts}).pipe(gulp.dest(dstbase.resources.views.layouts));
     gulp.src(srcbase.resources.views.site+'/**/*.php',{base: srcbase.resources.views.site}).pipe(gulp.dest(dstbase.resources.views.site));
     gulp.src(srcbase.resources.views.admin+'/**/*.php',{base: srcbase.resources.views.admin}).pipe(gulp.dest(dstbase.resources.views.admin));
+    gulp.src(srcbase.resources.views.auth+'/**/*.php',{base: srcbase.resources.views.auth}).pipe(gulp.dest(dstbase.resources.views.auth));
 });
 gulp.task('copylibs', ['init'], function() {
     gulp.src(srcbase.libs+'*.php').pipe(gulp.dest(dstbase.libs));

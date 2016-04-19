@@ -55,3 +55,16 @@ popd
 # Zizaco Entrust bug fix
 # manually update composer.json...
 #https://github.com/Zizaco/entrust/issues/468
+
+# => Manually update middleware for Entrust
+# If you are going to use Middleware (requires Laravel 5.1 or later) you also need to add
+#   'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+#   'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+#   'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
+# to routeMiddleware array in app/Http/Kernel.php.
+
+## OTHER:
+## https://github.com/SammyK/LaravelFacebookSdk
+## In .env:
+#FACEBOOK_APP_ID    = ...
+#FACEBOOK_APP_SECRET  = ...

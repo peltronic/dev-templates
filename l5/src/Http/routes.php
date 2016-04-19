@@ -44,8 +44,11 @@ Route::group(['middleware' => ['auth']], function () {
 // Web
 //-------------------------------------------------------------------------
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/login/fb', ['as'=>'auth.doFacebookLogin', 'uses'=>'AuthController@doFacebookLogin']);
-    Route::get('/login/fb/callback', ['as'=>'auth.callbackFacebookLogin', 'uses'=>'AuthController@callbackFacebookLogin']);
+    //Route::get('/login/fb', ['as'=>'site.auth.doFacebookLogin', 'uses'=>'Site\AuthController@doFacebookLogin']);
+    //Route::get('/login/fb/callback', ['as'=>'site.auth.callbackFacebookLogin', 'uses'=>'Site\AuthController@callbackFacebookLogin']);
+
+    // Generate a login URL
+    Route::get('/facebook/login', ['as'=>'site.auth.doFacebookLogin', 'uses'=>'Site\AuthController@doFacebookLogin']);
 
     // %FIXME: move pages to end
     Route::get('/welcome', ['as'=>'site.welcome', 'uses'=>'Site\WelcomeController@show']);

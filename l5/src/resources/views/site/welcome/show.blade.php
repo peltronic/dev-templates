@@ -13,7 +13,11 @@
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
                 @include('auth._login')
-                {!! \App\Libs\ViewHelpers::linkToRouteWithHtml('auth.doFacebookLogin','<i class="fa fa-lg fa-facebook"></i>Login with Facebook',null,['class'=>'button small radius tag-clickme_to_login_with_facebook']) !!}
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-4">
+                        {!! \App\Libs\ViewHelpers::linkToRouteWithHtml('site.auth.doFacebookLogin','<i class="fa fa-lg fa-facebook"></i>Login with Facebook',null,['class'=>'btn btn-primary tag-clickme_to_login_with_facebook']) !!}
+                    </div>
+                </div>
             </form>
             <div class="panel-body">
             </div>
