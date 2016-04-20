@@ -59,4 +59,4 @@
 
     </section>
 
-@stop
+@endsection

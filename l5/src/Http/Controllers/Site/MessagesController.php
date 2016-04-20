@@ -9,9 +9,18 @@ class MessagesController extends SiteController {
     {
         parent::__construct();
 
-        $this->registerJsLibs(['/js/vendor/plupload/plupload.full.min.js']);
+        $this->registerJsLibs([
+            //'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            '/js/vendor/plupload/plupload.full.min.js',
+            'js/vendor/plupload/jquery.ui.plupload.js',
+            'js/app/common/libs/psgFormUtils.js',
+        ]);
         $this->registerJsInlines(['/js/app/site/inline/initPlupload.js']);
-        //$this->registerCssInlines([ ]);
+
+        $this->registerCssInlines([ 
+            //'//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/smoothness/jquery-ui.min.css',
+            //'//www.plupload.com/plupload/js/jquery.ui.plupload/css/jquery.ui.plupload.css',
+        ]);
     }
 
     public function show($pkid)
@@ -34,7 +43,7 @@ class MessagesController extends SiteController {
 
         $submitURL = $data['submitURL'] = route('messages.store');
         $storePluURL = $data['storePluURL'] = route('messages.storePLU');
-        $data['classes'] = [];
+        $data['classes'] = ['form-horizontal'];
 
         return \View::make('site.messages.create',$data);
     }

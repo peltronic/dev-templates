@@ -20,15 +20,25 @@ $( document ).ready(function() {
     };
 
     // %TODO %FIXME: Can we move this into a library??
-    var uploader = new plupload.Uploader({
+    $("#plu-container").plupload({
+        
 
 	    runtimes : 'html5,flash,silverlight,html4',
 	    file_data_name : 'mediafile', // name of attr used in controller to grab file: Input::hasFile('mediafile')
 	    browse_button : 'plu-pickfiles', // you can pass an id...
-	    container: document.getElementById('plu-container'), // ... or DOM Element itself
+	    //container: document.getElementById('plu-container'), // ... or DOM Element itself
 	    url : $('#plu-pickfiles').data('store_plu_url'), // uploader.settings.url
-	    //flash_swf_url : '../js/Moxie.swf',
-	    //silverlight_xap_url : '../js/Moxie.xap',
+
+        // Views to activate
+        views: {
+            list: true,
+            thumbs: true, // Show thumbs
+            active: 'thumbs'
+        },
+ 
+        flash_swf_url : '/js/vendor/plupload/Moxie.swf', // Flash settings
+     
+        silverlight_xap_url : '/js/vendor/plupload/js/Moxie.xap', // Silverlight settings
 
 	    filters : {
 		    max_file_size : '20mb',
@@ -131,7 +141,7 @@ $( document ).ready(function() {
     });
 
     
-    uploader.init();
+    //uploader.init();
     
 });
 

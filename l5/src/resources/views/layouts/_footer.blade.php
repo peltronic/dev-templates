@@ -14,7 +14,9 @@
 
             <section class="row">
                 <article class="superbox-copyright_etc col-xs-12 col-md-6">
+                    {{--
                     <img id="footer-logo" src="/static/images/mycompany-logo-col-xs.png" alt="mylogo">
+                    --}}
                     <div id="copyright" class="">Copyright © 2016 My Company Inc.</div>
                 </article>
         
