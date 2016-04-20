@@ -9,13 +9,12 @@ class SiteController extends Controller {
 
         // common to all site controllers
         $this->registerJsLibs([
-            //'/js/vendor/app.js',
+            '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js',
+            '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
          ]);
 
         $this->registerJsInlines([
             //'/js/site/initCommon.js',
-            '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js',
-            '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
          ]);
 
         $this->registerCssInlines([

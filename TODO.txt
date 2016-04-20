@@ -1,4 +1,15 @@
 %%% M 4/18
+[ ] consider https://github.com/laravel/socialite over facebook-sdk
+[ ] pivot to Austin project: admin panel, plupload lib
+  ~ NO this wont' work: because for multiple files there are multiple calls -- instead of 2 api calls, do one, and send the other form data in the plupload post
+   => clssfy architecture is correct one
+[ ] ?? Should Auth/AuthController et. al be in src or be installed under build via script??
+[ ] refactor login/registration partials
+[ ] in auth partials, use Laravel helpers
+[ ] add FB login (later)
+[ ] Form builder (!)
+[ ] Ajax/api driven page
+
 [ ] https://laravel.com/docs/5.2/authorization vs entrust
 
 %%%

@@ -21,6 +21,11 @@ var srcbase = {
     meta: '../src/meta/',
     appcss: '../src/css/',
     appjs: '../src/js/',
+    vendor: {
+        plupload: {
+            js: '../src/vendor/plupload-2.1.8/js/',
+        },
+    },
 };
 var dstbase = {
     http: dstapp+'Http/',
@@ -37,8 +42,13 @@ var dstbase = {
     },
     appcss: dstroot+'/public/css/app/',
     appjs: dstroot+'/public/js/app/',
+    vendor: {
+        plupload: {
+            js: dstroot+'/public/js/vendor/plupload/',
+        },
+    },
 };
-var srcpaths = {
+var srcfiles = {
     setup: [srcbase.meta+'setup/.bowerrc', srcbase.meta+'setup/*'],
     //scripts: ['scripts/**/*.js', '!scripts/libs/**/*.js'],
     //libs: ['scripts/libs/jquery/dist/jquery.js', 'scripts/libs/underscore/underscore.js', 'scripts/backbone/backbone.js'],
@@ -51,7 +61,7 @@ var srcpaths = {
 // Zurb Foundation
 //=================================================
 gulp.task('setup-foundation', ['init'], function() {
-    gulp.src(srcpaths.setup).pipe(gulp.dest(dstroot));
+    gulp.src(srcfiles.setup).pipe(gulp.dest(dstroot));
 });
 gulp.task('install-foundation', ['init'], function() {
     gulp.src(srcbase.meta+'install-foundation/*.scss').pipe(gulp.dest(dstbase.resources.assets+'sass/'));
@@ -87,8 +97,11 @@ gulp.task('copycss', ['init'], function() {
 gulp.task('copyjs', ['init'], function() {
     gulp.src(srcbase.appjs+'/**/*.js',{base: srcbase.appjs}).pipe(gulp.dest(dstbase.appjs));
 });
+gulp.task('copyplupload', ['init'], function() {
+    gulp.src(srcbase.vendor.plupload.js+'/*.js').pipe(gulp.dest(dstbase.vendor.plupload.js));
+});
 // group task to install all source
-gulp.task('copysrc', ['copyhttp','copylibs','copymodels','copyresources','copycss','copyjs'], function() {
+gulp.task('copysrc', ['copyhttp','copylibs','copymodels','copyresources','copycss','copyjs','copyplupload'], function() {
 });
 
 

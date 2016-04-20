@@ -36,8 +36,12 @@ Route::group(['middleware'=>['web','role:admin'],'prefix'=>'admin','namespace'=>
 //-------------------------------------------------------------------------
 // Auth
 //-------------------------------------------------------------------------
-Route::group(['middleware' => ['auth']], function () {
-    Route::get('/siteconfigs', ['as'=>'siteconfigs.show', 'uses'=>'Site\SiteconfigsController@show']);
+Route::group(['middleware' => ['auth'],'namespace'=>'Site'], function () {
+    Route::get('/siteconfigs', ['as'=>'siteconfigs.show', 'uses'=>'SiteconfigsController@show']);
+
+    Route::post('/messages/storePLU', ['as'=>'messages.storePLU', 'uses'=>'MessagesController@storePLU']);
+    Route::resource('messages', 'MessagesController');
+    //Route::get('/messages', ['as'=>'messages.show', 'uses'=>'Site\SiteconfigsController@show']);
 });
 
 //-------------------------------------------------------------------------
