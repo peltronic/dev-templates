@@ -60,7 +60,7 @@ class MediafileManager {
         $linkAttrs = ['target'=>'_blank','title'=>$mediafile->caption];
         $html = '';
         if ( !empty($imgUrl) ) {
-            $html .= \Cl\ViewHelpers::linkToWithImg($imgUrl,$thumbimgUrl,'TBD',$imgAttrs,$linkAttrs);
+            $html .= ViewHelpers::linkToWithImg($imgUrl,$thumbimgUrl,'TBD',$imgAttrs,$linkAttrs);
         }
         if ( !empty($mediafile->caption) ) {
             $html .= '<div class="tag-caption">'.htmlentities($mediafile->caption).'</div>';
@@ -79,7 +79,7 @@ class MediafileManager {
         $linkAttrs = ['target'=>'_blank','title'=>$mediafile->caption];
         $html = '';
         if ( !empty($imgUrl) ) {
-            $html .= \Cl\ViewHelpers::linkToWithImg($imgUrl,$thumbimgUrl,'TBD',$imgAttrs,$linkAttrs);
+            $html .= ViewHelpers::linkToWithImg($imgUrl,$thumbimgUrl,'TBD',$imgAttrs,$linkAttrs);
         }
         return $html;
     }
@@ -127,7 +127,7 @@ class MediafileManager {
         $w = 525;
         $h = 0;
         $outputPath = PATH_CDN_IMG_MID;
-        $filename = \Cl\Image::resize($imgPathIn, $w, $h, $guid, $outputPath,1); // force jpeg
+        $filename = Image::resize($imgPathIn, $w, $h, $guid, $outputPath,1); // force jpeg
         return $filename;
     }
 
@@ -138,7 +138,7 @@ class MediafileManager {
         $w = 256;
         $h = 0;
         $outputPath = PATH_CDN_IMG_THUMB;
-        $filename = \Cl\Image::resize($imgPathIn, $w, $h, $guid, $outputPath,1); // force jpeg
+        $filename = Image::resize($imgPathIn, $w, $h, $guid, $outputPath,1); // force jpeg
         return $filename;
     }
 

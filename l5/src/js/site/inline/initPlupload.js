@@ -86,6 +86,7 @@ $( document ).ready(function() {
                                 // Form upload is done, now do the Plupload (files)
                                 //uploader.settings.multipart_params = {"related_obj_id":response.obj.id};
                                 //$('#plu-container').plupload('getUploader').settings.url += '/'+response.obj.id; // %FIXME only if exist
+                                $('#plu-container').plupload('getUploader').settings.multipart_params = {};
                                 $('#plu-container').plupload('getUploader').settings.url = $('#plu-pickfiles').data('store_plu_url') + '/'+response.obj.id;
                                 $('#plu-container').plupload('start');
                             }

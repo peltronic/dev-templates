@@ -70,7 +70,7 @@ class MessagesController extends SiteController {
             // %TODO: good candidate for an event?
             $newFilename = $mediafile->guid.'.'.$mediafile->ext;
             \Input::file('mediafile')->move(PATH_CDN_MEDIA.'/', $newFilename);
-            if ( ($mediafile->ext!='gif') && \App\Libs\Mime::isImage($mimetype) ) {
+            if ( ($mediafile->ext!='gif') && \App\Libs\Mime::isImage($mediafile->mimetype) ) {
                 $resizedFilename = \App\Libs\MediafileManager::resizeToMid(PATH_CDN_MEDIA.'/'.$newFilename,$mediafile->guid);
                 $resizedFilename = \App\Libs\MediafileManager::resizeToThumb(PATH_CDN_MEDIA.'/'.$newFilename,$mediafile->guid);
             }
