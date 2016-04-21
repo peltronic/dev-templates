@@ -19,9 +19,9 @@ class Mediafile extends BaseModel {
     //--------------------------------------------
     // Relations
     //--------------------------------------------
-    public function siteconfig()
+    public function message()
     {
-        return $this->belongsTo('App\Models\Siteconfig');
+        return $this->belongsTo('App\Models\Message');
     }
 
     //--------------------------------------------
@@ -29,13 +29,13 @@ class Mediafile extends BaseModel {
     //--------------------------------------------
 
     //if ( \Input::hasFile('mediafile') )
-    public function savePLU($attrs,$belongsTo=null)
+    public static function savePLU($attrs,$belongsTo=null)
     {
         //$attrs = \Input::all();
 
             //$this->doPluUpload();
 
-        $attrs['guid'] = $guid = Guid::create();
+        $attrs['guid'] = $guid = \App\Libs\Guid::create();
         $attrs['ogfilename'] = $ogfilename = \Input::file('mediafile')->getClientOriginalName();
         $attrs['ext'] = $ext = pathinfo($ogfilename, PATHINFO_EXTENSION);
 
@@ -43,18 +43,11 @@ class Mediafile extends BaseModel {
         $attrs['mimetype'] = $mimetype = finfo_file($finfo, \Request::file('mediafile'));
         finfo_close($finfo);
     
-        $newFilename = $guid.'.'.$ext;
-        \Input::file('mediafile')->move(PATH_CDN_MEDIA.'/', $newFilename);
-        if ( ($ext!='gif') && \Cl\Mime::isImage($mimetype) ) {
-            $resizedFilename = \Cl\MediafileManager::resizeToMid(PATH_CDN_MEDIA.'/'.$newFilename,$guid);
-            $resizedFilename = \Cl\MediafileManager::resizeToThumb(PATH_CDN_MEDIA.'/'.$newFilename,$guid);
-        }
-    
         $mediafile = new Mediafile($attrs);
         if ( empty($belongsTo) ) {
             $mediafle->save();
         } else {
-            $belongsTo->mediafiles->save($mediafile);
+            $belongsTo->mediafiles()->save($mediafile);
         }
 
         return $mediafile;

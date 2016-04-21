@@ -22,13 +22,19 @@
     @include('layouts._footer')
 </footer>
 
-<?php
-echo $g_jsMgr->renderLibs();
-echo $g_jsMgr->renderInlines();
-?>
-
+<?php echo $g_jsMgr->renderLibs(); ?>
 <script>
+
+/*
+$.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+});
+*/
 </script>
+<?php echo $g_jsMgr->renderInlines(); ?>
 
 </body>
 

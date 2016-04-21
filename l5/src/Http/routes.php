@@ -39,7 +39,8 @@ Route::group(['middleware'=>['web','role:admin'],'prefix'=>'admin','namespace'=>
 Route::group(['middleware' => ['auth'],'namespace'=>'Site'], function () {
     Route::get('/siteconfigs', ['as'=>'siteconfigs.show', 'uses'=>'SiteconfigsController@show']);
 
-    Route::post('/messages/storePLU', ['as'=>'messages.storePLU', 'uses'=>'MessagesController@storePLU']);
+    // Note, pkid param is not really optional, but we add it in javascript so to avoid an L5 error, make it optional here
+    Route::post('/messages/storePLU/{messagePKID?}', ['as'=>'messages.storePLU', 'uses'=>'MessagesController@storePLU']);
     Route::resource('messages', 'MessagesController');
     //Route::get('/messages', ['as'=>'messages.show', 'uses'=>'Site\SiteconfigsController@show']);
 });

@@ -17,3 +17,6 @@ footer {
     margin-top: 20px;
     border-top: solid 2px #ccc;
 }
+form .tag-verr {
+    color: red;
+}

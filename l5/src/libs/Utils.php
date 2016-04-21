@@ -158,30 +158,30 @@ class Utils {
         return $routes;
     }
 
-    static public function slugify($text)
+    static public function slugify($strIN,$table=null)
     {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\\pL\d]+~u', '-', $text);
+        $slug = preg_replace('~[^\\pL\d]+~u', '-', $strIN); // replace non letter or digits by -
+        $slug = trim($slug, '-'); // trim
+        //$slug = iconv('utf-8', 'us-ascii//TRANSLIT', $slug); // transliterate
+        $slug = strtolower($slug); // lowercase
+        $slug = preg_replace('~[^-\w]+~', '', $slug); // remove unwanted characters
 
-        // trim
-        $text = trim($text, '-');
-
-        /*
-        // transliterate
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-         */
-
-        // lowercase
-        $text = strtolower($text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        if (empty($text)) {
-            return 'n-a';
+        if ( empty($table) ) {
+            return $slug;
         }
 
-        return $text;
+        // ensure unique
+        $iter = 1;
+        $ogSlug = $slug;
+        do {
+            $numMatches = \DB::table($table)->where('slug','=',$slug)->count();
+            if ( ($numMatches==0) || ($iter>10) ) {
+                break; // already unique, or we've exceeded max tries
+            }
+            $slug = $ogSlug.'-'.rand(1,999);
+        } while ( $numMatches>0 );
+
+        return $slug;
     }  // slugify()
 
     static public function getBgImgByUniv($univSlug)

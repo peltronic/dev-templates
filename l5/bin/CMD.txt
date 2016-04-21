@@ -1,1 +1,2 @@
+npm install gulp-flatten
 gulp --BUILDDIR=$BUILDDIR copyhttp

@@ -22,7 +22,6 @@ $( document ).ready(function() {
     // %TODO %FIXME: Can we move this into a library??
     $("#plu-container").plupload({
         
-
 	    runtimes : 'html5,flash,silverlight,html4',
 	    file_data_name : 'mediafile', // name of attr used in controller to grab file: Input::hasFile('mediafile')
 	    browse_button : 'plu-pickfiles', // you can pass an id...
@@ -45,6 +44,11 @@ $( document ).ready(function() {
 		    mime_types: [ {title : "Image files", extensions : "jpg,jpeg,gif,png"} ]
 	    },
     
+        headers : {
+            'X-Requested-With' : 'XMLHttpRequest',
+            'x-csrf-token' : $("input[name='_token']").val(),
+        },
+
 	    init: {
 		    PostInit: function() {
 			    document.getElementById('plu-filelist').innerHTML = '';
@@ -81,8 +85,9 @@ $( document ).ready(function() {
                                 pluHelper._response = response;
                                 // Form upload is done, now do the Plupload (files)
                                 //uploader.settings.multipart_params = {"related_obj_id":response.obj.id};
-                                uploader.settings.url += '/'+response.obj.id; // %FIXME only if exist
-				                uploader.start();
+                                //$('#plu-container').plupload('getUploader').settings.url += '/'+response.obj.id; // %FIXME only if exist
+                                $('#plu-container').plupload('getUploader').settings.url = $('#plu-pickfiles').data('store_plu_url') + '/'+response.obj.id;
+                                $('#plu-container').plupload('start');
                             }
                         },
                         error   : function( xhr, err ) {
@@ -101,10 +106,12 @@ $( document ).ready(function() {
 
             // Called when all files are either uploaded or failed
             UploadComplete: function(up, files) {
+                /*
                 psgFormUtils.clearVals(pluHelper._context);
-                pluHelper._afterStore(pluHelper._context,pluHelper._response); 
+                //pluHelper._afterStore(pluHelper._context,pluHelper._response);  // %FIXME
                 pluHelper.reset();
 			    document.getElementById('plu-filelist').innerHTML = '';
+                */
                 console.log('[UploadComplete]');
             },
     

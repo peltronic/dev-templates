@@ -8,7 +8,7 @@ class BaseModel extends Model {
     // %FIXME: better way to do this
     public static function getValidationRules()
     {
-        $rules = self::$rules;
+        $rules = static::$rules;
         return $rules;
     }
 

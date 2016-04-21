@@ -20,6 +20,10 @@ class Message extends BaseModel {
     {
         return $this->belongsTo('App\Models\User');
     }
+    public function mediafiles()
+    {
+        return $this->hasMany('App\Models\Mediafile');
+    }
 
 
 }

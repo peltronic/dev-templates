@@ -1,6 +1,7 @@
 // [ ] .gitignore
 var gulp  = require('gulp'),
-    gutil = require('gulp-util');
+    gutil = require('gulp-util'),
+    gflatten = require('gulp-flatten');
 
 var dstroot = gutil.env.BUILDDIR+'/myl5app/';
 var dstapp = gutil.env.BUILDDIR+'/myl5app/app/';
@@ -24,6 +25,8 @@ var srcbase = {
     vendor: {
         plupload: {
             js: '../src/vendor/plupload-2.1.8/js/',
+            css: '../src/vendor/plupload-2.1.8/js/',
+            img: '../src/vendor/plupload-2.1.8/js/',
         },
     },
 };
@@ -40,11 +43,18 @@ var dstbase = {
         },
         assets: dstroot+'resources/assets/',
     },
+    config: dstroot+'config/',
+    css: dstroot+'/public/css/',
     appcss: dstroot+'/public/css/app/',
     appjs: dstroot+'/public/js/app/',
+    img: {
+        base: dstroot+'public/img/',
+        plupload: dstroot+'public/img/plupload/',
+    },
     vendor: {
         plupload: {
             js: dstroot+'/public/js/vendor/plupload/',
+            css: dstroot+'/public/css/vendor/plupload/',
         },
     },
 };
@@ -97,8 +107,20 @@ gulp.task('copycss', ['init'], function() {
 gulp.task('copyjs', ['init'], function() {
     gulp.src(srcbase.appjs+'/**/*.js',{base: srcbase.appjs}).pipe(gulp.dest(dstbase.appjs));
 });
+gulp.task('copymeta', ['init'], function() {
+    gulp.src(srcbase.meta+'configs/*.php').pipe(gulp.dest(dstbase.config));
+});
 gulp.task('copyplupload', ['init'], function() {
-    gulp.src(srcbase.vendor.plupload.js+'/*.js').pipe(gulp.dest(dstbase.vendor.plupload.js));
+    gulp.src(srcbase.vendor.plupload.js+'*.js').pipe(gulp.dest(dstbase.vendor.plupload.js));
+    gulp.src(srcbase.vendor.plupload.js+'Moxie.swf').pipe(gulp.dest(dstbase.vendor.plupload.js));
+    gulp.src(srcbase.vendor.plupload.js+'Moxie.xap').pipe(gulp.dest(dstbase.vendor.plupload.js));
+    gulp.src(srcbase.vendor.plupload.js+'jquery.ui.plupload/*.js').pipe(gulp.dest(dstbase.vendor.plupload.js));
+    gulp.src(srcbase.vendor.plupload.css+'**/*.css')
+        .pipe(gflatten())
+        .pipe(gulp.dest(dstbase.vendor.plupload.css));
+    gulp.src(srcbase.vendor.plupload.img+'**/{*.png,*.gif}')
+        .pipe(gflatten())
+        .pipe(gulp.dest(dstbase.css+'vendor/img'));
 });
 // group task to install all source
 gulp.task('copysrc', ['copyhttp','copylibs','copymodels','copyresources','copycss','copyjs','copyplupload'], function() {

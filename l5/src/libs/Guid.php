@@ -1,5 +1,5 @@
 <?php
-namespace PsgApp;
+namespace App\Libs;
 
 class Guid {
 
