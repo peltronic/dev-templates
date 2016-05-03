@@ -21,6 +21,9 @@ CREATE TABLE `users` (
 
 CREATE TABLE `lsessions` (
   `id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `user_id` int(10) unsigned DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8_unicode_ci,
   `payload` text COLLATE utf8_unicode_ci NOT NULL,
   `last_activity` int(11) NOT NULL,
   UNIQUE KEY `lsessions_id_unique` (`id`)
