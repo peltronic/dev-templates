@@ -43,8 +43,10 @@ exit 0
 #=======================
 # Set folder permissions
 #=======================
-chmod -R 777 ./storage
-chmod -R 777 bootstrap/cache
+CWD=$(pwd)
+cd $BUILDDIR/myl5app
+chmod -R 777 ./storage; chmod -R 777 bootstrap/cache
+cd $CWD
 
 #=======================
 # Install packages

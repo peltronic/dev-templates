@@ -3,8 +3,8 @@ var gulp  = require('gulp'),
     gutil = require('gulp-util'),
     gflatten = require('gulp-flatten');
 
-var dstroot = gutil.env.BUILDDIR+'/myl5app/';
-var dstapp = gutil.env.BUILDDIR+'/myl5app/app/';
+var dstroot = gutil.env.BUILDDIR+'/';
+var dstapp = gutil.env.BUILDDIR+'/app/';
 
 var srcbase = {
     src: '../src/',

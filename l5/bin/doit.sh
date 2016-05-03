@@ -32,7 +32,13 @@ gulp watch
 popd
 
 # Your compiled files will be at public/css/app.css and public/js/app.js.
-
+#   "require": {
+#       "php": ">=5.5.9",
+#       "laravel/framework": "5.2.*",
+#       "laravelcollective/html": "^5.2",
+#       "zizaco/entrust": "dev-laravel-5",
+#       "sammyk/laravel-facebook-sdk": "^3.0"
+#   },
 # *** Manually Add to config/app.php providiers:
 #  Collective\Html\HtmlServiceProvider::class,
 #  Zizaco\Entrust\EntrustServiceProvider::class,
